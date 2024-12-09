@@ -24,7 +24,7 @@ const Nav = () => {
       >
         <UnsplashBoxLogo className="h-6 w-auto" />
       </Link>
-      <ul className="flex space-x-2 text-sm">
+      <ul className="flex space-x-3 text-sm">
         {links.map(link => {
           const Icon = link.icon
           return (
@@ -32,7 +32,7 @@ const Nav = () => {
               <Link
                 href={link.href}
                 className={clsx(
-                  'md:px-4 md:py-2 p-2 flex space-x-2 justify-center items-center font-medium rounded transition-colors duration-200 ease-in',
+                  'md:px-6 md:py-[0.65rem] p-2 flex justify-center items-center font-medium rounded transition-colors duration-200 ease-in',
                   {
                     'bg-light dark:bg-gray-800 dark:text-light':
                       pathname === link.href,
