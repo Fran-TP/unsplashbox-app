@@ -3,15 +3,15 @@ import SearchIcon from '../ui/icons/search'
 
 const Home = () => {
   return (
-    <div className="relative h-full flex justify-center items-center overflow-x-hidden">
+    <div className="relative h-full flex justify-center items-center overflow-x-clip">
       <Image
-        src="/hero-left.png"
+        src="/hero-left.webp"
         alt="hero-left"
         className="absolute my-auto hidden sm:block sm:-left-[60%] lg:-left-5 h-[73vh] w-auto"
-        width={538}
-        height={797}
+        width={537}
+        height={759}
       />
-      <section className="flex flex-col px-6 sm:py-0 gap-3 justify-center items-center -translate-y-24">
+      <section className="flex flex-col px-6 sm:py-0 gap-3 justify-center items-center ">
         <h1 className="font-semibold text-4xl text-light/80">Search</h1>
         <p className="font-light mb-3">
           Search high-resolution images from Unsplash
@@ -31,11 +31,11 @@ const Home = () => {
         </div>
       </section>
       <Image
-        src="/hero-right.png"
+        src="/hero-right.webp"
         alt="hero-right"
         className="absolute my-auto hidden sm:block sm:-right-[63%]  lg:-right-9  h-[73vh] w-auto"
-        width={538}
-        height={797}
+        width={537}
+        height={759}
       />
     </div>
   )
