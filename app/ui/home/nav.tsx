@@ -3,7 +3,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import SearchIcon from '../icons/search'
 import UnsplashBoxLogo from '../icons/logo'
 import HomeIcon from '../icons/home'
 import GalleryIcon from '../icons/gallery'
