@@ -7,7 +7,7 @@ const Home = () => {
       <Image
         src="/hero-left.webp"
         alt="hero-left"
-        className="absolute my-auto hidden sm:block sm:-left-[60%] lg:-left-5 h-[73vh] w-auto"
+        className="absolute my-auto hidden sm:block sm:-left-[55%] lg:-left-[50%] xl:-left-8 h-[73vh] w-auto"
         width={537}
         height={759}
       />
@@ -25,15 +25,15 @@ const Home = () => {
             type="text"
             placeholder="Enter your keywords..."
             autoComplete="off"
-            className="peer border bg-gray-800 outline-none w-[22rem] sm:w-[30rem] lg:w-[35rem] xl:w-[39.5rem] border-gray-700 rounded-lg py-4 pl-4 pr-10 placeholder: placeholder:text-gray-500"
+            className="peer border bg-gray-800 outline-none w-[22rem] sm:w-[30rem] lg:w-[35rem] xl:w-[39.5rem] border-gray-700 rounded-lg py-4 pl-4 pr-10 placeholder:text-gray-500 focus:text-light/80"
           />
-          <SearchIcon className="absolute top-1/2 right-5 -translate-y-1/2 size-7 text-gray-700 peer-focus:text-light/80 transition-colors duration-150 ease-in" />
+          <SearchIcon className="absolute text-balance top-1/2 right-5 -translate-y-1/2 size-7 text-gray-700 peer-focus:text-light/80 transition-colors duration-150 ease-in" />
         </div>
       </section>
       <Image
         src="/hero-right.webp"
         alt="hero-right"
-        className="absolute my-auto hidden sm:block sm:-right-[63%]  lg:-right-9  h-[73vh] w-auto"
+        className="absolute m-auto hidden sm:block sm:-right-[55%]  lg:-right-[50%] xl:-right-8 h-[73vh] w-auto"
         width={537}
         height={759}
       />
