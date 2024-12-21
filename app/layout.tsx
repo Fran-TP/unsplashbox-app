@@ -9,8 +9,7 @@ interface RootLayoutProps {
 export const metadata: Metadata = {
   title: 'UnsplashBox',
   description: `
-    A simple app to search for images
-    from Unsplash and download them.
+    A simple app to search for images from Unsplash and download them.
   `,
   icons: {
     icon: [
