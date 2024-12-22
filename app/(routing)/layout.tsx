@@ -1,4 +1,4 @@
-import Nav from '../ui/home/nav'
+import Nav from '@/ui/home/nav'
 
 interface LayoutProps {
   children: React.ReactNode
