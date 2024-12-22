@@ -1,29 +1,13 @@
-import { fetchPhotos } from '@/app/lib/data'
-import Image from 'next/image'
+import PhotoGallery from '@/ui/collections/photo-gallery'
+import { Suspense } from 'react'
 
-const GalleryPage = async () => {
-  const gallery = await fetchPhotos({ perPage: 40 })
-
+const GalleryPage = () => {
   return (
     <div className="relative">
       <div className="bg-gradient-to-r from-red-300 from-60% via-indigo-500 via-80% to-purple-600 to-95% h-16" />
-      <section className="columns-4 p-14 gap-x-7 gap-y-7">
-        {gallery.map(image => {
-          return (
-            <article
-              key={image.id}
-              className="w-auto rounded-md overflow-clip mb-7"
-            >
-              <Image
-                src={image.urls.regular}
-                alt={image.alt_description}
-                width={image.width}
-                height={image.height}
-              />
-            </article>
-          )
-        })}
-      </section>
+      <Suspense fallback={<div>Loading...</div>}>
+        <PhotoGallery />
+      </Suspense>
     </div>
   )
 }
