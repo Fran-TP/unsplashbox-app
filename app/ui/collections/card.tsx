@@ -1,23 +1,23 @@
 import Image from 'next/image'
+import type { Basic } from 'unsplash-js/dist/methods/photos/types'
 
 interface CardProps {
-  id: string
-  urls: {
-    regular: string
-  }
-  alt_description: string
-  height: number
+  urls: Basic['urls']
+  altDescription?: string
   width: number
+  height: number
+  blurHash?: string
 }
 
-const Card = (Props: CardProps) => {
+const Card = ({ urls, altDescription, width, height, ...rest }: CardProps) => {
   return (
     <article className="w-auto rounded-md overflow-clip mb-7">
       <Image
-        src={Props.urls.regular}
-        alt={Props.alt_description}
-        width={Props.width}
-        height={Props.height}
+        src={urls?.regular}
+        alt={altDescription ?? 'Unsplash Image'}
+        width={width}
+        height={height}
+        {...rest}
       />
     </article>
   )
