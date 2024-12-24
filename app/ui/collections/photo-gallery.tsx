@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { OrderBy } from 'unsplash-js'
 
 const PhotoGallery = async () => {
-  const gallery = await fetchUnsplashPhotos({
+  const { results: photoCollection } = await fetchUnsplashPhotos({
     perPage: 20,
     page: 1,
     orderBy: OrderBy.DOWNLOADS
@@ -11,7 +11,7 @@ const PhotoGallery = async () => {
 
   return (
     <section className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 p-14 gap-x-7">
-      {gallery?.results.map(image => {
+      {photoCollection.map(image => {
         return (
           <article
             key={image.id}

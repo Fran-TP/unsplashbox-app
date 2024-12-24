@@ -2,6 +2,9 @@
 
 import { env } from '@/env'
 import { createApi, OrderBy } from 'unsplash-js'
+import { Errors } from 'unsplash-js/dist/helpers/errors'
+import type { ApiResponse } from 'unsplash-js/dist/helpers/response'
+import type { Basic } from 'unsplash-js/dist/methods/photos/types'
 
 const unsplash = createApi({ accessKey: env.UNSPLASH_API_ACCESS_KEY })
 
@@ -11,16 +14,26 @@ interface PhotoParams {
   orderBy?: OrderBy
 }
 
+interface PhotoListResponse {
+  results: Basic[]
+  total: number
+}
+
 export const fetchUnsplashPhotos = async ({
   page = 1,
   perPage = 10,
   orderBy = OrderBy.POPULAR
 }: PhotoParams) => {
-  const result = await unsplash.photos.list({
-    page,
-    perPage,
-    orderBy
+  const { promise, reject, resolve } =
+    Promise.withResolvers<PhotoListResponse>()
+
+  unsplash.photos.list({ page, perPage, orderBy }).then(result => {
+    if (result.errors) {
+      reject(result.errors)
+    } else {
+      resolve(result.response)
+    }
   })
 
-  return result.response
+  return promise
 }
