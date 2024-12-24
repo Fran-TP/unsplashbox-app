@@ -2,8 +2,6 @@
 
 import { env } from '@/env'
 import { createApi, OrderBy } from 'unsplash-js'
-import { Errors } from 'unsplash-js/dist/helpers/errors'
-import type { ApiResponse } from 'unsplash-js/dist/helpers/response'
 import type { Basic } from 'unsplash-js/dist/methods/photos/types'
 
 const unsplash = createApi({ accessKey: env.UNSPLASH_API_ACCESS_KEY })
