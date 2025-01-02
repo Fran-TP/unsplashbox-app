@@ -1,4 +1,4 @@
-import SearchIcon from '../icons/search'
+import SearchIcon from '@/ui/icons/search'
 
 const InputSearch = () => {
   return (
