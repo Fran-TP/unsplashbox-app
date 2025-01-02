@@ -1,6 +1,7 @@
 import { fetchUnsplashPhotos } from '@/app/lib/data/fetchPhotos'
 import { OrderBy } from 'unsplash-js'
-import Card from './card'
+import PhotoCard from './photo-card'
+import InputSearch from '../components/input-search'
 
 const PhotoGallery = async () => {
   const { results: photoCollection } = await fetchUnsplashPhotos({
@@ -11,8 +12,9 @@ const PhotoGallery = async () => {
 
   return (
     <section className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 p-14 gap-x-7">
+      <InputSearch />
       {photoCollection.map(image => (
-        <Card
+        <PhotoCard
           key={image.id}
           urls={image.urls}
           altDescription={image.alt_description ?? 'Unsplash Image'}
