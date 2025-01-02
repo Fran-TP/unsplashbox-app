@@ -9,12 +9,18 @@ interface CardProps {
   blurHash?: string
 }
 
-const Card = ({ urls, altDescription, width, height, ...rest }: CardProps) => {
+const PhotoCard = ({
+  urls,
+  altDescription = 'Unsplash Image',
+  width,
+  height,
+  ...rest
+}: CardProps) => {
   return (
     <article className="w-auto rounded-md overflow-clip mb-7">
       <Image
         src={urls?.regular}
-        alt={altDescription ?? 'Unsplash Image'}
+        alt={altDescription}
         width={width}
         height={height}
         {...rest}
@@ -23,4 +29,4 @@ const Card = ({ urls, altDescription, width, height, ...rest }: CardProps) => {
   )
 }
 
-export default Card
+export default PhotoCard
