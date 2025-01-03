@@ -1,3 +1,4 @@
+import { transform } from 'next/dist/build/swc/generated-native'
 import type { Config } from 'tailwindcss'
 
 export default {
@@ -14,6 +15,16 @@ export default {
         dark: '#121826',
         'muted-gray': '#6C727F',
         light: '#E5E7EB'
+      },
+      animation: {
+        shimmer: 'shimmer 1s infinite'
+      },
+      keyframes: {
+        shimmer: {
+          to: {
+            transform: 'translateX(100%)'
+          }
+        }
       }
     }
   },
