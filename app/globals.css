@@ -18,3 +18,17 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  scale: 1.5;
+  background-image: linear-gradient(
+    to right,
+    transparent 40%,
+    #fafafa0f 50%,
+    transparent 60%
+  );
+}
