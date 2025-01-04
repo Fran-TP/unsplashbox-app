@@ -4,7 +4,7 @@ import PhotoCard from './photo-card'
 
 const PhotoGallery = async () => {
   const { results: photoCollection } = await fetchUnsplashPhotos({
-    perPage: 20,
+    perPage: 15,
     page: 1,
     orderBy: OrderBy.DOWNLOADS
   })
