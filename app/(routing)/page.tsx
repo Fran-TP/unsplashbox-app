@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import SearchIcon from '../ui/icons/search'
 import InputSearch from '../ui/components/input-search'
 
 const Home = () => {
