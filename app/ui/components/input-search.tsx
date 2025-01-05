@@ -4,9 +4,13 @@ import { useDebounce } from '@/app/hooks/useDebounce'
 import SearchIcon from '@/ui/icons/search'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-const SEARCH_INPUT_DELAY = 300
+const SEARCH_INPUT_DELAY = 500
 
-const InputSearch = () => {
+interface InputSearchProps {
+  className?: string
+}
+
+const InputSearch = ({ className }: InputSearchProps) => {
   const searchParams = useSearchParams()
   const pathName = usePathname()
   const { replace } = useRouter()
@@ -24,7 +28,7 @@ const InputSearch = () => {
   }, SEARCH_INPUT_DELAY)
 
   return (
-    <div className="absolute -top-5 left-0 right-0 z-10 w-fit mt-14 mx-auto">
+    <div className={className}>
       <label htmlFor="search" className="sr-only">
         Search
       </label>
