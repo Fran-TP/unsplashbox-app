@@ -23,7 +23,7 @@ const PhotoGallery = async ({ searchParams }: PhotoGalleryProps) => {
       className={clsx('p-14', {
         'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7':
           photoCollection.length > 0,
-        'grid place-items-center h-[80vh]': photoCollection.length === 0
+        'grid place-items-center flex-grow': photoCollection.length === 0
       })}
     >
       {photoCollection.length > 0 ? (
