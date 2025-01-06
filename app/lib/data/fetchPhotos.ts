@@ -1,15 +1,17 @@
 'use server'
 
 import { env } from '@/env'
-import { createApi, OrderBy } from 'unsplash-js'
+import { createApi, type SearchOrderBy } from 'unsplash-js'
 import type { Basic } from 'unsplash-js/dist/methods/photos/types'
+import { sleep } from '../utils'
 
 const unsplash = createApi({ accessKey: env.UNSPLASH_API_ACCESS_KEY })
 
 interface PhotoParams {
+  query: string
   page?: number
   perPage?: number
-  orderBy?: OrderBy
+  orderBy?: SearchOrderBy
 }
 
 interface PhotoListResponse {
@@ -20,12 +22,13 @@ interface PhotoListResponse {
 export const fetchUnsplashPhotos = async ({
   page = 1,
   perPage = 10,
-  orderBy = OrderBy.POPULAR
+  query,
+  orderBy = 'latest'
 }: PhotoParams) => {
   const { promise, reject, resolve } =
     Promise.withResolvers<PhotoListResponse>()
 
-  unsplash.photos.list({ page, perPage, orderBy }).then(result => {
+  unsplash.search.getPhotos({ query, page, perPage, orderBy }).then(result => {
     if (result.errors) {
       reject(result.errors)
     } else {
