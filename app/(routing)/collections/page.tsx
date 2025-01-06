@@ -11,16 +11,12 @@ interface GalleryPageProps {
 }
 
 const GalleryPage = async ({ searchParams }: GalleryPageProps) => {
-  const collectionSearchParams = await searchParams
-
-  console.log(collectionSearchParams)
-
   return (
     <div className="relative">
       <div className="bg-gradient-to-r from-red-300 from-60% via-indigo-500 via-80% to-purple-600 to-95% h-16" />
       <InputSearch className="absolute -top-5 left-0 right-0 z-10 w-fit mt-14 mx-auto" />
       <Suspense fallback={<GallerySkeleton />}>
-        <PhotoGallery />
+        <PhotoGallery searchParams={searchParams} />
       </Suspense>
     </div>
   )
