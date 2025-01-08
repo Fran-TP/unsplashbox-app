@@ -14,7 +14,7 @@ interface PhotoParams {
   orderBy?: SearchOrderBy
 }
 
-interface PhotoListResponse {
+export interface PhotoListResponse {
   results: Basic[]
   total: number
 }
@@ -24,17 +24,19 @@ export const fetchUnsplashPhotos = async ({
   perPage = 10,
   query,
   orderBy = 'latest'
-}: PhotoParams) => {
-  const { promise, reject, resolve } =
-    Promise.withResolvers<PhotoListResponse>()
+}: PhotoParams): Promise<PhotoListResponse> => {
+  await sleep(5000)
 
-  unsplash.search.getPhotos({ query, page, perPage, orderBy }).then(result => {
-    if (result.errors) {
-      reject(result.errors)
-    } else {
-      resolve(result.response)
-    }
+  const result = await unsplash.search.getPhotos({
+    query,
+    page,
+    perPage,
+    orderBy
   })
 
-  return promise
+  if (result.errors) {
+    throw new Error(result.errors[0])
+  }
+
+  return result.response
 }
