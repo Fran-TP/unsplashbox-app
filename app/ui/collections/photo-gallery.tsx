@@ -1,29 +1,23 @@
-import { fetchUnsplashPhotos } from '@/app/lib/data/fetchPhotos'
+'use client'
+
+import type { PhotoListResponse } from '@/app/lib/data/fetchPhotos'
 import PhotoCard from './photo-card'
 import clsx from 'clsx'
+import { use } from 'react'
 
 interface PhotoGalleryProps {
-  searchParams: Promise<{ query?: string }>
+  photoCollectionPromise: Promise<PhotoListResponse>
 }
 
-const PhotoGallery = async ({ searchParams }: PhotoGalleryProps) => {
-  const { query = 'cats' } = await searchParams
-
-  const { results: photoCollection } = await fetchUnsplashPhotos({
-    query,
-    perPage: 15,
-    page: 1,
-    orderBy: 'relevant'
-  })
-
-  console.log(photoCollection)
+const PhotoGallery = ({ photoCollectionPromise }: PhotoGalleryProps) => {
+  const { results: photoCollection } = use(photoCollectionPromise)
 
   return (
     <section
       className={clsx('p-14', {
         'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7':
           photoCollection.length > 0,
-        'grid place-items-center flex-grow': photoCollection.length === 0
+        'grid place-items-center flex-grow h-full': photoCollection.length === 0
       })}
     >
       {photoCollection.length > 0 ? (
