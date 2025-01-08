@@ -6,17 +6,19 @@ import { Suspense } from 'react'
 
 interface SearchParams {
   query?: string
+  page?: number
 }
 interface GalleryPageProps {
   searchParams: Promise<SearchParams>
 }
 
 const GalleryPage = async ({ searchParams }: GalleryPageProps) => {
-  const { query = 'cats' } = await searchParams
+  const { query = 'cats', page = '1' } = await searchParams
 
   const photoCollectionPromise = fetchUnsplashPhotos({
     query,
-    perPage: 15,
+    perPage: 13,
+    page: Number(page),
     orderBy: 'relevant'
   })
 
