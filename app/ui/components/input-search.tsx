@@ -6,11 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 const SEARCH_INPUT_DELAY = 500
 
-interface InputSearchProps {
-  className?: string
-}
-
-const InputSearch = ({ className }: InputSearchProps) => {
+const InputSearch = () => {
   const searchParams = useSearchParams()
   const pathName = usePathname()
   const { replace } = useRouter()
@@ -30,7 +26,7 @@ const InputSearch = ({ className }: InputSearchProps) => {
   }, SEARCH_INPUT_DELAY)
 
   return (
-    <div className={className}>
+    <div className="absolute -top-5 left-0 right-0 z-10 w-fit mt-14 mx-auto">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
