@@ -25,8 +25,6 @@ export const fetchUnsplashPhotos = async ({
   query,
   orderBy = 'latest'
 }: PhotoParams): Promise<PhotoListResponse> => {
-  await sleep(5000)
-
   const result = await unsplash.search.getPhotos({
     query,
     page,
