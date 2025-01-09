@@ -20,8 +20,8 @@ export interface PhotoListResponse {
 }
 
 export const fetchUnsplashPhotos = async ({
-  page = 1,
-  perPage = 10,
+  page = 0,
+  perPage,
   query,
   orderBy = 'latest'
 }: PhotoParams): Promise<PhotoListResponse> => {
