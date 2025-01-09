@@ -12,7 +12,7 @@ const Home = () => {
 
     const data = new FormData(evt.currentTarget)
 
-    push(`/collections?page=1&query=${data.get('search')}`)
+    push(`/collections?query=${data.get('search')}`)
   }
 
   return (
