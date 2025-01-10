@@ -6,28 +6,28 @@ import { Suspense } from 'react'
 
 interface SearchParams {
   query?: string
-  page?: number
 }
 interface GalleryPageProps {
   searchParams: Promise<SearchParams>
 }
 
-const GalleryPage = async ({ searchParams }: GalleryPageProps) => {
-  const { query = 'cats', page = '1' } = await searchParams
+// const PHOTOS_PER_PAGE = 15
 
-  const photoCollectionPromise = fetchUnsplashPhotos({
-    query,
-    perPage: 13,
-    page: Number(page),
-    orderBy: 'relevant'
-  })
+const GalleryPage = async ({ searchParams }: GalleryPageProps) => {
+  const { query = 'popular' } = await searchParams
+
+  // const photoCollectionPromise = fetchUnsplashPhotos({
+  //   query,
+  //   perPage: PHOTOS_PER_PAGE,
+  //   orderBy: 'relevant'
+  // })
 
   return (
     <div className="relative flex flex-col h-full">
       <div className="flex-shrink-0 bg-gradient-to-r from-red-300 from-60% via-indigo-500 via-80% to-purple-600 to-95% h-16" />
       <InputSearch />
       <Suspense key={query} fallback={<GallerySkeleton />}>
-        <PhotoGallery photoCollectionPromise={photoCollectionPromise} />
+        <PhotoGallery query={query} />
       </Suspense>
     </div>
   )
