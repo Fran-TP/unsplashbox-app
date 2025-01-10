@@ -6,8 +6,7 @@ import {
 } from '@/app/lib/data/fetchPhotos'
 import PhotoCard from './photo-card'
 import clsx from 'clsx'
-import { use, useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 interface PhotoGalleryProps {
   // photoCollectionPromise: Promise<PhotoListResponse>
@@ -18,36 +17,25 @@ const INITIAL_PAGE = 1
 
 const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const [photos, setPhotos] = useState<PhotoListResponse['results']>([])
-  const queryParams = useSearchParams()
+  const [latestPhotosId, setLatestPhotosId] = useState<string[]>([])
   const [page, setPage] = useState(INITIAL_PAGE)
 
-  console.log(page)
-
   useEffect(() => {
-    fetchUnsplashPhotos({
-      perPage: 15,
-      query
-    }).then(({ results, total }) => {
-      console.log(total)
-      setPhotos(results)
-    })
-  }, [query])
+    fetchUnsplashPhotos({ perPage: 15, query, page }).then(
+      ({ results, total_pages: _ }) => {
+        setLatestPhotosId(results.map(photo => photo.id))
 
-  useEffect(() => {
-    if (page === INITIAL_PAGE) return
+        const uniquePhotos = results.filter(
+          ({ id }) => !latestPhotosId.includes(id)
+        )
 
-    fetchUnsplashPhotos({
-      page,
-      perPage: 5,
-      query: queryParams.get('query') ?? 'popular'
-    }).then(({ results }) => {
-      console.log(results, photos)
-      setPhotos(photos.concat(results))
-    })
-  }, [page])
+        setPhotos(photos.concat(uniquePhotos))
+      }
+    )
+  }, [query, page])
 
   const handleClick = () => {
-    setPage(prev => prev + 2)
+    setPage(page + 1)
   }
 
   return (
