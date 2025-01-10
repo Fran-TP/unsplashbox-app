@@ -17,6 +17,7 @@ interface PhotoParams {
 export interface PhotoListResponse {
   results: Basic[]
   total: number
+  total_pages: number
 }
 
 export const fetchUnsplashPhotos = async ({
