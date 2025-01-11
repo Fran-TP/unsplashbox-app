@@ -18,7 +18,7 @@ const INITIAL_PAGE = 1
 
 const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const [photos, setPhotos] = useState<PhotoListResponse['results']>([])
-  const [latestPhotosId, setLatestPhotosId] = useState<string[]>([])
+  const [latestPhotoIds, setLatestPhotoIds] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(false)
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(INITIAL_PAGE)
@@ -27,13 +27,12 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
     setLoading(true)
     fetchUnsplashPhotos({ perPage: 15, query, page })
       .then(({ results, total_pages }) => {
-        setLatestPhotosId(results.map(photo => photo.id))
-
-        const uniquePhotos = results.filter(
-          ({ id }) => !latestPhotosId.includes(id)
+        const distinctPhotos = results.filter(
+          ({ id }) => !latestPhotoIds.has(id)
         )
-        console.log(total_pages)
-        setPhotos(photos.concat(uniquePhotos))
+
+        setLatestPhotoIds(new Set(results.map(photo => photo.id)))
+        setPhotos(photos.concat(distinctPhotos))
         setTotalPages(total_pages)
 
         setLoading(false)
@@ -48,14 +47,10 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   }
 
   return (
-    <div className="flex flex-col h-full justify-center items-center pt-14 px-14">
-      {photos.length > 0 && (
+    <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
+      {photos.length > 0 ? (
         <section
-          className={clsx({
-            'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7':
-              photos.length > 0,
-            'grid place-items-center flex-grow h-full': photos.length === 0
-          })}
+          className={'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7'}
         >
           {photos.map(image => (
             <PhotoCard
@@ -67,6 +62,10 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
             />
           ))}
         </section>
+      ) : (
+        <p className="font-light text-lg text-gray-300">
+          No photos found for <strong>{query}</strong>
+        </p>
       )}
       {loading && <GallerySkeleton />}
       {page < totalPages && (
