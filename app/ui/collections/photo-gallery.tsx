@@ -38,6 +38,9 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
         setLoading(false)
       })
       .catch(() => {
+        console.error('Failed to fetch photos')
+      })
+      .finally(() => {
         setLoading(false)
       })
   }, [query, page])
