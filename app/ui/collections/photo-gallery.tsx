@@ -7,6 +7,7 @@ import {
 import PhotoCard from './photo-card'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import { GallerySkeleton, PhotoSkeleton } from '../components/skeletons'
 
 interface PhotoGalleryProps {
   // photoCollectionPromise: Promise<PhotoListResponse>
@@ -18,20 +19,28 @@ const INITIAL_PAGE = 1
 const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const [photos, setPhotos] = useState<PhotoListResponse['results']>([])
   const [latestPhotosId, setLatestPhotosId] = useState<string[]>([])
+  const [loading, setLoading] = useState(false)
+  const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(INITIAL_PAGE)
 
   useEffect(() => {
-    fetchUnsplashPhotos({ perPage: 15, query, page }).then(
-      ({ results, total_pages: _ }) => {
+    setLoading(true)
+    fetchUnsplashPhotos({ perPage: 15, query, page })
+      .then(({ results, total_pages }) => {
         setLatestPhotosId(results.map(photo => photo.id))
 
         const uniquePhotos = results.filter(
           ({ id }) => !latestPhotosId.includes(id)
         )
-
+        console.log(total_pages)
         setPhotos(photos.concat(uniquePhotos))
-      }
-    )
+        setTotalPages(total_pages)
+
+        setLoading(false)
+      })
+      .catch(() => {
+        setLoading(false)
+      })
   }, [query, page])
 
   const handleClick = () => {
@@ -39,15 +48,15 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   }
 
   return (
-    <section
-      className={clsx('p-14', {
-        'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7':
-          photos.length > 0,
-        'grid place-items-center flex-grow h-full': photos.length === 0
-      })}
-    >
-      {photos.length > 0 ? (
-        <>
+    <div className="flex flex-col h-full justify-center items-center pt-14 px-14">
+      {photos.length > 0 && (
+        <section
+          className={clsx({
+            'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7':
+              photos.length > 0,
+            'grid place-items-center flex-grow h-full': photos.length === 0
+          })}
+        >
           {photos.map(image => (
             <PhotoCard
               key={image.id}
@@ -57,19 +66,20 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
               height={image.height}
             />
           ))}
-
-          <button
-            type="button"
-            onClick={handleClick}
-            className="w-full py-4 text-center text-light/80 border-t border-gray-700"
-          >
-            Load more
-          </button>
-        </>
-      ) : (
-        <p className="text-center text-lg text-light/80">No photos found</p>
+        </section>
       )}
-    </section>
+      {loading && <GallerySkeleton />}
+      {page < totalPages && (
+        <button
+          type="button"
+          className="px-2 py-1 text-lg text-white bg-gray-800 border-2 border-gray-700 rounded-md w-fit mb-2"
+          onClick={handleClick}
+        >
+          Load More
+          {loading && <p>xin</p>}
+        </button>
+      )}
+    </div>
   )
 }
 
