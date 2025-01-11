@@ -19,7 +19,7 @@ const PhotoCard = ({
   return (
     <article className="w-auto rounded-md overflow-clip mb-7">
       <Image
-        src={urls?.regular}
+        src={urls?.small}
         alt={altDescription}
         width={width}
         height={height}
