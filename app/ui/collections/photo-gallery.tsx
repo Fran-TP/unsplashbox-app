@@ -19,7 +19,7 @@ const INITIAL_PAGE = 1
 const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const [photos, setPhotos] = useState<PhotoListResponse['results']>([])
   const [latestPhotoIds, setLatestPhotoIds] = useState<Set<string>>(new Set())
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(INITIAL_PAGE)
 
@@ -51,7 +51,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
 
   return (
     <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
-      {photos.length > 0 ? (
+      {photos.length > 0 && (
         <section
           className={'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7'}
         >
@@ -65,10 +65,6 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
             />
           ))}
         </section>
-      ) : (
-        <p className="font-light text-lg text-gray-300">
-          No photos found for <strong>{query}</strong>
-        </p>
       )}
       {loading && <GallerySkeleton />}
       {page < totalPages && (
@@ -78,7 +74,6 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
           onClick={handleClick}
         >
           Load More
-          {loading && <p>xin</p>}
         </button>
       )}
     </div>
