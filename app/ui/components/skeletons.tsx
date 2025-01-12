@@ -1,14 +1,17 @@
 import clsx from 'clsx'
 import PhotoIcon from '../icons/photo'
 
-export const PhotoSkeleton = () => {
-  const aspectRatio = Math.random() > 0.5 ? 'aspect-square' : 'aspect-video'
+interface PhotoSkeletonProps {
+  displayAspect: 'square' | 'video'
+}
 
+export const PhotoSkeleton = ({ displayAspect }: PhotoSkeletonProps) => {
   return (
     <div
       className={clsx(
         'relative shimmer before:animate-shimmer overflow-hidden w-full rounded-md mb-7 border border-gray-700 bg-gray-800 grid place-items-center break-inside-avoid',
-        aspectRatio
+        { 'aspect-square': displayAspect === 'square' },
+        { 'aspect-video': displayAspect === 'video' }
       )}
     >
       <PhotoIcon className="size-20 text-gray-700 stroke-1" />
@@ -20,8 +23,9 @@ export const GallerySkeleton = () => (
   <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7 w-full">
     {Array.from({ length: 15 }).map((_, i) => {
       const key = `skeleton-${i}`
+      const displayAspect = i % 3 === 0 ? 'video' : 'square'
 
-      return <PhotoSkeleton key={key} />
+      return <PhotoSkeleton key={key} displayAspect={displayAspect} />
     })}
   </div>
 )
