@@ -53,7 +53,12 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
     <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
       {photos.length > 0 && (
         <section
-          className={'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7'}
+          className={clsx(
+            'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7',
+            {
+              'mb-7': loading
+            }
+          )}
         >
           {photos.map(image => (
             <PhotoCard
@@ -70,7 +75,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
       {page < totalPages && (
         <button
           type="button"
-          className="px-2 py-1 text-lg text-white bg-gray-800 border-2 border-gray-700 rounded-md w-fit mb-2"
+          className="px-2 py-1 text-lg text-white bg-gray-800 border-2 border-gray-700 rounded-lg w-fit mb-2 mt-5"
           onClick={handleClick}
         >
           Load More
