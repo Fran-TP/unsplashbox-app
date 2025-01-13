@@ -7,7 +7,8 @@ import {
 import PhotoCard from './photo-card'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { GallerySkeleton, PhotoSkeleton } from '../components/skeletons'
+import { GallerySkeleton } from '../components/skeletons'
+import Masonry from 'react-layout-masonry'
 
 interface PhotoGalleryProps {
   // photoCollectionPromise: Promise<PhotoListResponse>
@@ -15,6 +16,13 @@ interface PhotoGalleryProps {
 }
 
 const INITIAL_PAGE = 1
+const ITEMS_GAP = 28
+const responsiveColumnCounts = {
+  '320': 1,
+  '640': 2,
+  '1024': 3,
+  '1280': 4
+}
 
 const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const [photos, setPhotos] = useState<PhotoListResponse['results']>([])
@@ -52,13 +60,10 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   return (
     <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
       {photos.length > 0 && (
-        <section
-          className={clsx(
-            'columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7',
-            {
-              'mb-7': loading
-            }
-          )}
+        <Masonry
+          columns={responsiveColumnCounts}
+          gap={ITEMS_GAP}
+          className={clsx(loading && 'mb-7')}
         >
           {photos.map(image => (
             <PhotoCard
@@ -69,7 +74,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
               height={image.height}
             />
           ))}
-        </section>
+        </Masonry>
       )}
       {loading && <GallerySkeleton />}
       {page < totalPages && (
