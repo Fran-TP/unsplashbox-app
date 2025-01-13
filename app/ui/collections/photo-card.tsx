@@ -17,7 +17,7 @@ const PhotoCard = ({
   ...rest
 }: CardProps) => {
   return (
-    <article className="w-auto rounded-md overflow-clip mb-7">
+    <article className="w-auto rounded-md overflow-clip">
       <Image
         src={urls?.small}
         alt={altDescription}
