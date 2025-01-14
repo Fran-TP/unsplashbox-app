@@ -35,7 +35,15 @@ export const useGallery = ({ query }: { query: string }) => {
       })
   }, [query, page])
 
-  const handleClick = () => {
+  const handleNextPage = () => {
     setPage(page + 1)
+  }
+
+  return {
+    photos,
+    loading,
+    handleNextPage,
+    totalPages,
+    page
   }
 }
