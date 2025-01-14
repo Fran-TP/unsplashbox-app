@@ -34,7 +34,9 @@ export const fetchUnsplashPhotos = async ({
   })
 
   if (result.errors) {
-    throw new Error(result.errors[0])
+    const [error] = result.errors
+
+    throw new Error(error)
   }
 
   return result.response
