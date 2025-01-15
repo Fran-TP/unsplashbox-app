@@ -5,6 +5,8 @@ import clsx from 'clsx'
 import { GallerySkeleton } from '../components/skeletons'
 import Masonry from 'react-layout-masonry'
 import { useGallery } from '@/app/hooks/useGallery'
+import { useCallback, useEffect, useRef } from 'react'
+import { useNearScreen } from '@/app/hooks/useNearScreen'
 
 interface PhotoGalleryProps {
   query: string
@@ -22,6 +24,20 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const { photos, loading, page, totalPages, handleNextPage } = useGallery({
     query
   })
+  const externalRef = useRef<HTMLDivElement>(null)
+
+  const { isNearScreen } = useNearScreen({
+    distance: '100px',
+    externalRef
+  })
+
+  const onNextPage = useCallback(() => {
+    console.log('Next page')
+  }, [])
+
+  useEffect(() => {
+    if (isNearScreen) onNextPage()
+  }, [isNearScreen, onNextPage])
 
   return (
     <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
@@ -55,6 +71,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
           Load More
         </button>
       )}
+      <div id="visor" ref={externalRef} className="hidden" />
     </div>
   )
 }
