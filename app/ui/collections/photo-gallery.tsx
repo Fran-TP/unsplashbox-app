@@ -64,15 +64,6 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
         <p className="text-2xl text-gray-600">No photos found</p>
       )}
       {loading && <GallerySkeleton />}
-      {/* {page < totalPages && (
-        <button
-          type="button"
-          className="px-2 py-1 text-lg text-white bg-gray-800 border-2 border-gray-700 rounded-lg w-fit mb-2 mt-5"
-          onClick={handleNextPage}
-        >
-          Load More
-        </button>
-      )} */}
       <div id="visor" ref={externalRef} />
     </div>
   )
