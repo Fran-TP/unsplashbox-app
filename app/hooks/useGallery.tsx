@@ -13,9 +13,10 @@ export const useGallery = ({ query }: { query: string }) => {
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(INITIAL_PAGE)
 
+  // biome-ignore lint: don't need to add array methods to dependencies
   useEffect(() => {
     setLoading(true)
-    fetchUnsplashPhotos({ perPage: 15, query, page })
+    fetchUnsplashPhotos({ perPage: 20, query, page })
       .then(({ results, total_pages }) => {
         const distinctPhotos = results.filter(
           ({ id }) => !latestPhotoIds.has(id)
@@ -27,8 +28,10 @@ export const useGallery = ({ query }: { query: string }) => {
 
         setLoading(false)
       })
-      .catch(() => {
-        console.error('Failed to fetch photos')
+      .catch((error: unknown) => {
+        if (error instanceof Error) {
+          console.error(error.message)
+        }
       })
       .finally(() => {
         setLoading(false)
