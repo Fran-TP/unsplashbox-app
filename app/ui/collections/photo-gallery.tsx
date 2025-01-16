@@ -27,13 +27,15 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const externalRef = useRef<HTMLDivElement>(null)
 
   const { isNearScreen } = useNearScreen({
-    distance: '100px',
+    distance: '500px',
     externalRef
   })
 
+  console.log('loading', loading, { page, totalPages, isNearScreen })
+
   const onNextPage = useCallback(() => {
-    console.log('Next page')
-  }, [])
+    if (!loading && page < totalPages) handleNextPage()
+  }, [loading])
 
   useEffect(() => {
     if (isNearScreen) onNextPage()
@@ -62,7 +64,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
         <p className="text-2xl text-gray-600">No photos found</p>
       )}
       {loading && <GallerySkeleton />}
-      {page < totalPages && (
+      {/* {page < totalPages && (
         <button
           type="button"
           className="px-2 py-1 text-lg text-white bg-gray-800 border-2 border-gray-700 rounded-lg w-fit mb-2 mt-5"
@@ -70,8 +72,8 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
         >
           Load More
         </button>
-      )}
-      <div id="visor" ref={externalRef} className="hidden" />
+      )} */}
+      <div id="visor" ref={externalRef} />
     </div>
   )
 }
