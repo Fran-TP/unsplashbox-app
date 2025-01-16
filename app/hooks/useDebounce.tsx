@@ -11,9 +11,7 @@ export const useDebounce = (
       clearTimeout(timeRef.current)
     }
 
-    timeRef.current = window.setTimeout(() => {
-      callback(param)
-    }, delay)
+    timeRef.current = window.setTimeout(callback, delay, param)
   }
 
   return debounce
