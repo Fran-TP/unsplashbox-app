@@ -3,12 +3,17 @@
 import { useEffect, useState } from 'react'
 
 interface NearScreenProps {
-  distance: string
+  distance?: string
+  threshold?: number
   externalRef: React.RefObject<HTMLDivElement | null>
 }
 
+const THRESHOLD = 0
+const DEFAULT_DISTANCE = '100px'
+
 export const useNearScreen = ({
-  distance = '100px',
+  distance = DEFAULT_DISTANCE,
+  threshold = THRESHOLD,
   externalRef
 }: NearScreenProps) => {
   const [isNearScreen, setShow] = useState(false)
@@ -25,7 +30,7 @@ export const useNearScreen = ({
       },
       {
         rootMargin: distance,
-        threshold: 0.0
+        threshold: threshold
       }
     )
 
