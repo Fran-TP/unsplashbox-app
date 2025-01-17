@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { use, useCallback, useEffect, useState } from 'react'
 import {
   fetchUnsplashPhotos,
   type PhotoListResponse
@@ -12,6 +12,10 @@ export const useGallery = ({ query }: { query: string }) => {
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(INITIAL_PAGE)
+
+  const handleNextPage = useCallback(() => {
+    setPage(page + 1)
+  }, [page])
 
   // biome-ignore lint: don't need to add array methods to dependencies
   useEffect(() => {
@@ -37,10 +41,6 @@ export const useGallery = ({ query }: { query: string }) => {
         setLoading(false)
       })
   }, [query, page])
-
-  const handleNextPage = () => {
-    setPage(page + 1)
-  }
 
   return {
     photos,
