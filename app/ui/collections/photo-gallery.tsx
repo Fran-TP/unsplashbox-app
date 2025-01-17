@@ -13,6 +13,7 @@ interface PhotoGalleryProps {
 }
 
 const ITEMS_GAP = 28
+const INTERSECTION_MARGIN = '500px'
 const responsiveColumnCounts = {
   '320': 1,
   '640': 2,
@@ -25,17 +26,14 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
     query
   })
   const externalRef = useRef<HTMLDivElement>(null)
-
   const { isNearScreen } = useNearScreen({
-    distance: '500px',
+    distance: INTERSECTION_MARGIN,
     externalRef
   })
 
-  console.log('loading', loading, { page, totalPages, isNearScreen })
-
   const onNextPage = useCallback(() => {
     if (!loading && page < totalPages) handleNextPage()
-  }, [loading])
+  }, [page, totalPages, loading])
 
   useEffect(() => {
     if (isNearScreen) onNextPage()
@@ -43,7 +41,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
 
   return (
     <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
-      {photos.length > 0 && (
+      {photos.length > 0 ? (
         <Masonry
           columns={responsiveColumnCounts}
           gap={ITEMS_GAP}
@@ -59,11 +57,11 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
             />
           ))}
         </Masonry>
-      )}
-      {photos.length === 0 && !loading && (
+      ) : !loading ? (
         <p className="text-2xl text-gray-600">No photos found</p>
+      ) : (
+        <GallerySkeleton />
       )}
-      {loading && <GallerySkeleton />}
       <div id="visor" ref={externalRef} />
     </div>
   )
