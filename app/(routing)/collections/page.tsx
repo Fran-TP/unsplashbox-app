@@ -11,8 +11,6 @@ interface GalleryPageProps {
   searchParams: Promise<SearchParams>
 }
 
-// const PHOTOS_PER_PAGE = 15
-
 const GalleryPage = async ({ searchParams }: GalleryPageProps) => {
   const { query = 'popular' } = await searchParams
 
