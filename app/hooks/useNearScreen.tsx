@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface NearScreenProps {
   distance?: string
@@ -17,16 +17,17 @@ export const useNearScreen = ({
   externalRef
 }: NearScreenProps) => {
   const [isNearScreen, setShow] = useState(false)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
+    if (!externalRef.current) return
+    if (observerRef.current) observerRef.current.disconnect()
+
     const observer = new IntersectionObserver(
       entries => {
         const { isIntersecting } = entries[0]
-        if (isIntersecting) {
-          setShow(true)
-        } else {
-          setShow(false)
-        }
+
+        setShow(isIntersecting)
       },
       {
         rootMargin: distance,
@@ -34,8 +35,11 @@ export const useNearScreen = ({
       }
     )
 
-    externalRef.current && observer.observe(externalRef.current)
-  }, [distance, externalRef])
+    observer.observe(externalRef.current)
+    observerRef.current = observer
 
-  return { isNearScreen }
+    return () => observer.disconnect()
+  }, [distance, externalRef, threshold])
+
+  return { isNearScreen, observer: observerRef.current }
 }
