@@ -21,7 +21,7 @@ export const PhotoSkeleton = ({ displayAspect }: PhotoSkeletonProps) => {
 
 export const GallerySkeleton = () => (
   <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-7 w-full">
-    {Array.from({ length: 15 }).map((_, i) => {
+    {Array.from({ length: 18 }).map((_, i) => {
       const key = `skeleton-${i}`
       const displayAspect = i % 3 === 0 ? 'video' : 'square'
 
