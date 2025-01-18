@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { BeVietnamPro } from './fonts'
 import './globals.css'
+import { ImageDetailProvider } from './stores/image-detail-context'
 
 interface RootLayoutProps {
   readonly children: React.ReactNode
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${BeVietnamPro.className} antialiased`}>
-        {children}
+        <ImageDetailProvider>{children}</ImageDetailProvider>
       </body>
     </html>
   )
