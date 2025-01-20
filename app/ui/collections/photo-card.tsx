@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import type { Basic } from 'unsplash-js/dist/methods/photos/types'
 
-interface CardProps {
+export interface CardProps {
   urls: Basic['urls']
   altDescription?: string
   width: number
   height: number
-  blurHash?: string
+  onClick: () => void
 }
 
 const PhotoCard = ({
@@ -14,10 +14,15 @@ const PhotoCard = ({
   altDescription = 'Unsplash Image',
   width,
   height,
+  onClick,
   ...rest
 }: CardProps) => {
   return (
-    <article className="w-auto rounded-md overflow-clip">
+    <article
+      className="w-auto rounded-md overflow-clip"
+      onClick={onClick}
+      onKeyUp={onClick}
+    >
       <Image
         src={urls?.small}
         alt={altDescription}
