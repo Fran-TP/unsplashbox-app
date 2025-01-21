@@ -19,7 +19,7 @@ const PhotoCard = ({
 }: CardProps) => {
   return (
     <article
-      className="w-auto rounded-md overflow-clip"
+      className="w-auto rounded-md overflow-clip hover:cursor-zoom-in"
       onClick={onClick}
       onKeyUp={onClick}
     >
