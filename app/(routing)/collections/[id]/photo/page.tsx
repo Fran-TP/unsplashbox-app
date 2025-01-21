@@ -1,20 +1,13 @@
-'use client'
-
-import { ImageDetailContext } from '@/app/stores/image-detail-context'
-import { use } from 'react'
-import Image from 'next/image'
+import PhotoDetail from '@/app/ui/collections/detail-photo'
+import { Suspense } from 'react'
 
 const Page = () => {
-  const { imageDetail } = use(ImageDetailContext)
-
   return (
-    <Image
-      className="w-96"
-      src={imageDetail.url}
-      alt={imageDetail.title}
-      width={imageDetail.width}
-      height={imageDetail.height}
-    />
+    <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
+      <Suspense fallback={<div className="bg-green-300">Loading...</div>}>
+        <PhotoDetail />
+      </Suspense>
+    </div>
   )
 }
 
