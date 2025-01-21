@@ -5,15 +5,9 @@ import clsx from 'clsx'
 import { GallerySkeleton } from '../components/skeletons'
 import Masonry from 'react-layout-masonry'
 import { useGallery } from '@/app/hooks/useGallery'
-import { use, useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useNearScreen } from '@/app/hooks/useNearScreen'
-import type { Basic } from 'unsplash-js/dist/methods/photos/types'
 import { useRouter } from 'next/navigation'
-import { ImageDetailContext } from '@/app/stores/image-detail-context'
-
-interface PhotoType extends Basic {
-  title: string | null
-}
 
 interface PhotoGalleryProps {
   query: string
@@ -30,7 +24,6 @@ const responsiveColumnCounts = {
 
 const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   const { push } = useRouter()
-  const { setImageDetail } = use(ImageDetailContext)
   const { photos, loading, page, totalPages, handleNextPage } = useGallery({
     query
   })
@@ -45,18 +38,11 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
     if (!loading && page < totalPages) handleNextPage()
   }, [page, totalPages, loading])
 
-  const handlePhotoClick = (imageDetail: PhotoType) => () => {
-    setImageDetail({
-      id: imageDetail.id,
-      title: imageDetail.title ?? 'unsplash Image',
-      description: imageDetail.description ?? 'Unsplash Image',
-      url: imageDetail.urls.full,
-      height: imageDetail.height,
-      width: imageDetail.width
-    })
-
-    push(`/collections/${imageDetail.id}/photo`)
-  }
+  const handlePhotoClick =
+    ({ id }: { id: string }) =>
+    () => {
+      push(`/photos/${id}`)
+    }
 
   useEffect(() => {
     if (isNearScreen) onNextPage()
@@ -77,10 +63,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
               altDescription={image.alt_description ?? 'Unsplash Image'}
               width={image.width}
               height={image.height}
-              onClick={handlePhotoClick({
-                ...image,
-                title: image.alt_description
-              })}
+              onClick={handlePhotoClick({ id: image.id })}
             />
           ))}
         </Masonry>
