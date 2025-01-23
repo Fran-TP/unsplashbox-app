@@ -1,4 +1,4 @@
-import { fetchPhotoById } from '@/app/lib/data/fetchPhoto'
+import { fetchPhotoById } from '@/app/lib/data/fetch-photo-by-id'
 import Image from 'next/image'
 
 interface DetailPageProps {
