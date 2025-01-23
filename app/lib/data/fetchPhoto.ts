@@ -1,3 +1,4 @@
+import type { Basic } from 'unsplash-js/dist/methods/photos/types'
 import { unsplash } from './fetchPhotos'
 
 export interface Photo {
@@ -20,8 +21,14 @@ export interface Photo {
   }
 }
 
-export const fetchPhot = async (id: string): Promise<Photo> => {
+export const fetchPhot = async (id: string): Promise<Basic> => {
   const api = await unsplash.photos.get({ photoId: id })
+
+  if (api.errors) {
+    const [error] = api.errors
+
+    throw new Error(error)
+  }
 
   return api.response
 }
