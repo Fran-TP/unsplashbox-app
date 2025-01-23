@@ -4,7 +4,7 @@ import { env } from '@/env'
 import { createApi, type SearchOrderBy } from 'unsplash-js'
 import type { Basic } from 'unsplash-js/dist/methods/photos/types'
 
-const unsplash = createApi({ accessKey: env.UNSPLASH_API_ACCESS_KEY })
+export const unsplash = createApi({ accessKey: env.UNSPLASH_API_ACCESS_KEY })
 
 interface PhotoParams {
   query: string
