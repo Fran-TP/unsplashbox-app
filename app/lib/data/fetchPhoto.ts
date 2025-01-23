@@ -21,7 +21,7 @@ export interface Photo {
   }
 }
 
-export const fetchPhot = async (id: string): Promise<Basic> => {
+export const fetchPhotoById = async (id: string): Promise<Basic> => {
   const api = await unsplash.photos.get({ photoId: id })
 
   if (api.errors) {
