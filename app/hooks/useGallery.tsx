@@ -1,8 +1,8 @@
-import { use, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   fetchUnsplashPhotos,
   type PhotoListResponse
-} from '../lib/data/fetchPhotos'
+} from '../lib/data/fetch-photos'
 
 const INITIAL_PAGE = 1
 
