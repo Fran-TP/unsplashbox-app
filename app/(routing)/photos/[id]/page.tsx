@@ -1,5 +1,6 @@
 import { fetchPhotoById } from '@/app/lib/data/fetch-photo-by-id'
 import { formatDate } from '@/app/lib/utils'
+import { AddPhoto } from '@/app/ui/photos/buttons'
 import Image from 'next/image'
 
 interface DetailPageProps {
@@ -37,7 +38,7 @@ const DetailPage = async ({ params }: DetailPageProps) => {
           </time>
         </p>
         <div className="flex gap-4">
-          <button type="button">Add to collection</button>
+          <AddPhoto />
           <button type="button">Download</button>
         </div>
         <section className="mt-6">
