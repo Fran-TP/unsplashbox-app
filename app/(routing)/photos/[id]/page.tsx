@@ -1,4 +1,5 @@
 import { fetchPhotoById } from '@/app/lib/data/fetch-photo-by-id'
+import { formatDate } from '@/app/lib/utils'
 import Image from 'next/image'
 
 interface DetailPageProps {
@@ -10,7 +11,7 @@ const DetailPage = async ({ params }: DetailPageProps) => {
   const photo = await fetchPhotoById(id)
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 xl:grid-cols-2 lg:gap-8 p-14">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-1 xl:grid-cols-2 lg:gap-10 p-14">
       <Image
         className="rounded-lg"
         src={photo.urls.regular}
@@ -31,12 +32,8 @@ const DetailPage = async ({ params }: DetailPageProps) => {
         </div>
         <p>
           Published on{' '}
-          <time>
-            {new Date(photo.created_at).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
+          <time dateTime={photo.created_at}>
+            {formatDate(photo.created_at, 'en-US')}
           </time>
         </p>
         <div className="flex gap-4">
@@ -44,7 +41,7 @@ const DetailPage = async ({ params }: DetailPageProps) => {
           <button type="button">Download</button>
         </div>
         <section className="mt-6">
-          <h1 className="text-3xl text-light/80">Collection</h1>
+          <h2 className="text-3xl text-light/80">Collection</h2>
           {/* <div className="flex gap-4"></div> */}
         </section>
       </section>
