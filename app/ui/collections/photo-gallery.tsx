@@ -14,7 +14,7 @@ interface PhotoGalleryProps {
 }
 
 const ITEMS_GAP = 28
-const INTERSECTION_MARGIN = '500px'
+const INTERSECTION_MARGIN = '600px'
 const responsiveColumnCounts = {
   '320': 1,
   '640': 2,
