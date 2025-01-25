@@ -1,6 +1,7 @@
 import { fetchPhotoById } from '@/app/lib/data/fetch-photo-by-id'
-import { formatDate } from '@/app/lib/utils'
-import { AddPhoto } from '@/app/ui/photos/buttons'
+import { fetchUserCollections } from '@/app/lib/data/fetch-user-collections'
+import { formatDate, pluralize } from '@/app/lib/utils'
+import { AddPhoto, DownloadPhoto } from '@/app/ui/photos/buttons'
 import Image from 'next/image'
 
 interface DetailPageProps {
@@ -10,6 +11,9 @@ interface DetailPageProps {
 const DetailPage = async ({ params }: DetailPageProps) => {
   const { id } = await params
   const photo = await fetchPhotoById(id)
+  const collections = await fetchUserCollections({
+    username: photo.user.username
+  })
 
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-1 xl:grid-cols-2 lg:gap-10 p-14">
@@ -39,11 +43,35 @@ const DetailPage = async ({ params }: DetailPageProps) => {
         </p>
         <div className="flex gap-4">
           <AddPhoto />
-          <button type="button">Download</button>
+          <DownloadPhoto photo={photo} />
         </div>
         <section className="mt-6">
           <h2 className="text-3xl text-light/80">Collection</h2>
-          {/* <div className="flex gap-4"></div> */}
+          <ul className="p-3 space-y-2 max-h-96 overflow-y-auto snap-y collection__list">
+            {collections.map(collection => (
+              <li
+                key={collection.id}
+                className="group flex items-center gap-4 snap-start hover:bg-gray-800 p-3 rounded-xl cursor-pointer transition-colors duration-200 ease-in"
+              >
+                <div className="rounded-md overflow-hidden">
+                  <Image
+                    src={collection?.cover_photo?.urls.thumb ?? ''}
+                    alt={collection.title}
+                    width={70}
+                    height={70}
+                    className="group-hover:scale-125 aspect-square object-cover transition-transform duration-200 ease-in"
+                  />
+                </div>
+                <p className="text-light/80 font-medium flex flex-col gap-2">
+                  {collection.title}
+                  <span className="font-light text-xs">
+                    {collection.total_photos}{' '}
+                    {pluralize(collection.total_photos, 'photo')}
+                  </span>
+                </p>
+              </li>
+            ))}
+          </ul>
         </section>
       </section>
     </div>
