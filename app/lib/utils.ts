@@ -13,3 +13,14 @@ export const formatDate = (inputDate: string, locale = navigator.language) => {
 
   return formatter.format(date)
 }
+
+export const pluralize = (count: number, singular: string, plural: string) => {
+  const formatter = new Intl.PluralRules('en-US')
+  const countingRules: Partial<Record<Intl.LDMLPluralRule, string>> = {
+    one: singular,
+    other: plural
+  }
+  const select = formatter.select(count)
+
+  return countingRules[select]
+}
