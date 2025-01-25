@@ -33,3 +33,8 @@ body {
     transparent 60%
   );
 }
+
+.collection__list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--foreground) var(--background);
+}
