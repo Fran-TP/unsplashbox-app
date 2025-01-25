@@ -66,7 +66,7 @@ const DetailPage = async ({ params }: DetailPageProps) => {
                   {collection.title}
                   <span className="font-light text-xs">
                     {collection.total_photos}{' '}
-                    {pluralize(collection.total_photos, 'photo')}
+                    {pluralize(collection.total_photos, 'photo', 'photos')}
                   </span>
                 </p>
               </li>
