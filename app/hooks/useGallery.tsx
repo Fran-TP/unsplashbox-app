@@ -5,6 +5,7 @@ import {
 } from '../lib/data/fetch-photos'
 
 const INITIAL_PAGE = 1
+const MAX_PHOTOS_PER_PAGE = 20
 
 export const useGallery = ({ query }: { query: string }) => {
   const [photos, setPhotos] = useState<PhotoListResponse['results']>([])
@@ -20,7 +21,7 @@ export const useGallery = ({ query }: { query: string }) => {
   // biome-ignore lint: don't need to add array methods to dependencies
   useEffect(() => {
     setLoading(true)
-    fetchUnsplashPhotos({ perPage: 20, query, page })
+    fetchUnsplashPhotos({ perPage: MAX_PHOTOS_PER_PAGE, query, page })
       .then(({ results, total_pages }) => {
         const distinctPhotos = results.filter(
           ({ id }) => !latestPhotoIds.has(id)
