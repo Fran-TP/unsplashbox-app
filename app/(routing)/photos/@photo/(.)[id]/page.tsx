@@ -12,12 +12,12 @@ const DetailPage = ({ params }: DetailPageProps) => {
       <Modal>
         <Suspense
           fallback={
-            <div className="flex items-center justify-center h-screen">
-              <p className="text-2xl">Loading...</p>
+            <div className="flex items-center justify-center h-screen w-[80vw]">
+              <p className="text-2xl text-light">Loading...</p>
             </div>
           }
         >
-          <PhotoDetail params={params} path="modal" />
+          <PhotoDetail params={params} />
         </Suspense>
       </Modal>
     </>
