@@ -3,16 +3,14 @@ import { fetchUserCollections } from '@/app/lib/data/fetch-user-collections'
 import { formatDate, pluralize } from '@/app/lib/utils'
 import { AddPhoto, DownloadPhoto } from '@/app/ui/photos/buttons'
 import Image from 'next/image'
-import PhotoIcon from '../icons/photo'
 
 interface DetailPageProps {
   params: Promise<{ id: string }>
-  path: string
 }
 
-const PhotoDetail = async ({ params, path }: DetailPageProps) => {
+const PhotoDetail = async ({ params }: DetailPageProps) => {
   const { id } = await params
-  const photo = await fetchPhotoById(id, path)
+  const photo = await fetchPhotoById(id)
   const collections = await fetchUserCollections({
     username: photo.user.username
   })
@@ -37,7 +35,7 @@ const PhotoDetail = async ({ params, path }: DetailPageProps) => {
           />
           <p className="text-light/80 font-medium">{photo.user.name}</p>
         </div>
-        <p>
+        <p className="text-light/80 font-light text-sm">
           Published on{' '}
           <time dateTime={photo.created_at}>
             {formatDate(photo.created_at, 'en-US')}
