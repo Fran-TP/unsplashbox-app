@@ -3,7 +3,6 @@ import { unsplash } from '../constants'
 import { sleep } from '../utils'
 
 export const fetchPhotoById = async (id: string): Promise<Basic> => {
-  await sleep(3000)
   const api = await unsplash.photos.get({ photoId: id })
 
   if (api.errors) {
