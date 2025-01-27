@@ -30,7 +30,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={`${BeVietnamPro.className} antialiased`}>
+      <body
+        className={`${BeVietnamPro.className} antialiased has-[dialog[open]]:overflow-hidden`}
+      >
         {children}
       </body>
     </html>
