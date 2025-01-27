@@ -6,7 +6,7 @@ interface PhotoLayoutProps {
 const PhotoLayout = ({ children, photo }: PhotoLayoutProps) => {
   return (
     <>
-      <div className="relative">{photo}</div>
+      {photo}
       {children}
     </>
   )
