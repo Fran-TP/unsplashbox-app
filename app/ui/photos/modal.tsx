@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 interface ModalProps {
@@ -11,23 +11,12 @@ interface ModalProps {
 const Modal = ({ children }: ModalProps) => {
   const router = useRouter()
   const dialogRef = useRef<HTMLDialogElement | null>(null)
-  const [scrollPosition, setScrollPosition] = useState<number | null>(null)
 
   useEffect(() => {
-    setScrollPosition(window.scrollY)
-    document.body.style.overflow = 'hidden'
-
     if (!dialogRef?.current?.open) {
       dialogRef.current?.showModal()
     }
-
-    return () => {
-      document.body.style.overflow = ''
-      if (scrollPosition !== null) {
-        window.scrollTo(0, scrollPosition)
-      }
-    }
-  }, [scrollPosition])
+  }, [])
 
   const handleDismiss = () => {
     dialogRef.current?.close()
@@ -44,7 +33,7 @@ const Modal = ({ children }: ModalProps) => {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="bg-dark backdrop:bg-[linear-gradient(45deg,var(--tw-gradient-stops))] backdrop:from-green-700/90 backdrop:to-transparent rounded-lg"
+      className="bg-dark backdrop:bg-[linear-gradient(45deg,var(--tw-gradient-stops))] backdrop:from-violet-500/90 backdrop:to-transparent rounded-lg"
     >
       {children}
       <button
