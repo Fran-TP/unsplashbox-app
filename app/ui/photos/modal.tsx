@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import { set } from 'zod'
 
 interface ModalProps {
   children: React.ReactNode
@@ -14,12 +15,18 @@ const Modal = ({ children }: ModalProps) => {
 
   useEffect(() => {
     if (!dialogRef?.current?.open) {
-      dialogRef?.current?.showModal()
+      dialogRef.current?.showModal()
     }
   }, [])
 
-  const handleDismiss = () => {
-    dialogRef.current?.close()
+  const handleDismiss = (
+    event:
+      | React.KeyboardEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    if (event.type === 'escape' || event.type === 'click') {
+      dialogRef.current?.close()
+    }
 
     setTimeout(router.back, 310)
   }
@@ -33,6 +40,7 @@ const Modal = ({ children }: ModalProps) => {
       <button
         type="button"
         onClick={handleDismiss}
+        onKeyDown={handleDismiss}
         className="absolute top-4 right-4 dark:text-light/80 text-dark/80"
       >
         ❌
