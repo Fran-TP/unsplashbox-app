@@ -1,9 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { set } from 'zod'
 
 interface ModalProps {
   children: React.ReactNode
@@ -12,23 +11,34 @@ interface ModalProps {
 const Modal = ({ children }: ModalProps) => {
   const router = useRouter()
   const dialogRef = useRef<HTMLDialogElement | null>(null)
+  const [scrollPosition, setScrollPosition] = useState<number | null>(null)
 
   useEffect(() => {
+    setScrollPosition(window.scrollY)
+    document.body.style.overflow = 'hidden'
+
     if (!dialogRef?.current?.open) {
       dialogRef.current?.showModal()
     }
-  }, [])
 
-  const handleDismiss = (
-    event:
-      | React.KeyboardEvent<HTMLButtonElement>
-      | React.MouseEvent<HTMLButtonElement>
-  ) => {
-    if (event.type === 'escape' || event.type === 'click') {
-      dialogRef.current?.close()
+    return () => {
+      document.body.style.overflow = ''
+      if (scrollPosition !== null) {
+        window.scrollTo(0, scrollPosition)
+      }
     }
+  }, [scrollPosition])
+
+  const handleDismiss = () => {
+    dialogRef.current?.close()
 
     setTimeout(router.back, 310)
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key !== 'Escape') return
+
+    handleDismiss()
   }
 
   return createPortal(
@@ -40,7 +50,7 @@ const Modal = ({ children }: ModalProps) => {
       <button
         type="button"
         onClick={handleDismiss}
-        onKeyDown={handleDismiss}
+        onKeyDown={handleKeyDown}
         className="absolute top-4 right-4 dark:text-light/80 text-dark/80"
       >
         ❌
