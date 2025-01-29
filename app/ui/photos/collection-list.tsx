@@ -28,7 +28,7 @@ const CollectionList = async ({ collectionPromises }: CollectionListProps) => {
                 className="group-hover:scale-125 aspect-square object-cover transition-transform duration-200 ease-in"
               />
             </div>
-            <p className="text-light/80 font-medium flex flex-col gap-2">
+            <p className="text-light/80 font-medium flex flex-col gap-2 text-balance text-xs md:text-base">
               {collection.title}
               <span className="font-light text-xs">
                 {collection.total_photos}{' '}
