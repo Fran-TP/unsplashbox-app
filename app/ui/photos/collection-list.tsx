@@ -13,7 +13,7 @@ const CollectionList = async ({ collectionPromises }: CollectionListProps) => {
   return (
     <ul className="p-3 space-y-2 max-h-96 overflow-y-auto snap-y collection__list">
       {collections.map(collection => {
-        const thumbnail = collection?.cover_photo?.urls.thumb ?? '/file.svg'
+        const thumbnail = collection?.cover_photo?.urls.thumb
 
         return (
           <li
