@@ -44,7 +44,7 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
             {formatDate(photo.created_at, 'en-US')}
           </time>
         </p>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <AddPhoto />
           <DownloadPhoto photo={photo} />
         </div>
