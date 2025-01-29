@@ -25,7 +25,7 @@ const Modal = ({ children }: ModalProps) => {
   }
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key !== 'Escape') {
+    if (event.key === 'Escape') {
       handleDismiss()
     }
   }
