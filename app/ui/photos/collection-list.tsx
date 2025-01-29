@@ -10,6 +10,14 @@ interface CollectionListProps {
 const CollectionList = async ({ collectionPromises }: CollectionListProps) => {
   const collections = await collectionPromises
 
+  if (!collections.length) {
+    return (
+      <p className="text-light/80 text-sm font-light mt-4 ml-4">
+        No collections found
+      </p>
+    )
+  }
+
   return (
     <ul className="p-3 space-y-2 max-h-96 overflow-y-auto snap-y collection__list">
       {collections.map(collection => {
