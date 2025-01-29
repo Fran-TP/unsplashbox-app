@@ -5,7 +5,7 @@ interface DetailPageProps {
 }
 
 const DetailPage = ({ params }: DetailPageProps) => {
-  return <PhotoDetail params={params} path="total" />
+  return <PhotoDetail params={params} />
 }
 
 export default DetailPage
