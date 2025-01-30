@@ -41,11 +41,9 @@ export const CollectionSkeleton = ({
         return (
           <li
             key={key}
-            className="group flex items-center gap-4 snap-start hover:bg-gray-800 p-3 rounded-xl transition-colors duration-200 ease-in"
+            className="group relative shimmer before:animate-shimmer overflow-hidden flex items-center gap-4 snap-start hover:bg-gray-800 p-3 rounded-xl transition-colors duration-200 ease-in"
           >
-            <div className="rounded-md overflow-hidden">
-              <PhotoIcon className="size-16 stroke-1" />
-            </div>
+            <PhotoIcon className="size-16 stroke-1 dark:text-gray-600" />
             <div className="flex flex-col gap-2 w-full">
               <div className="w-full h-3 bg-gray-600 rounded-lg" />
               <div className="w-14 h-2 bg-gray-600 rounded-lg" />
