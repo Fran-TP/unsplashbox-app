@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { ErrorBoundary } from 'react-error-boundary'
 import CollectionList from './collection-list'
 import { Suspense } from 'react'
+import { CollectionSkeleton } from '../components/skeletons'
 
 interface DetailPageProps {
   params: Promise<{ id: string }>
@@ -55,9 +56,7 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
               <p className="text-light/80 text-lg">⚠️ Something went wrong</p>
             }
           >
-            <Suspense
-              fallback={<p className="text-light/80 text-lg">Loading...</p>}
-            >
+            <Suspense fallback={<CollectionSkeleton />}>
               <CollectionList collectionPromises={fetchedUserCollections} />
             </Suspense>
           </ErrorBoundary>
