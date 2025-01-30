@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import CloseIcon from '../icons/close'
 
 interface ModalProps {
   children: React.ReactNode
@@ -33,7 +34,7 @@ const Modal = ({ children }: ModalProps) => {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="bg-dark backdrop:bg-[linear-gradient(45deg,var(--tw-gradient-stops))] backdrop:from-violet-500/90 backdrop:to-transparent rounded-lg w-[80vw] overflow-clip"
+      className="bg-dark backdrop:bg-[linear-gradient(45deg,var(--tw-gradient-stops))] backdrop:from-green-700/90 backdrop:to-transparent rounded-lg w-[80vw] overflow-x-clip"
     >
       {children}
       <button
@@ -42,7 +43,7 @@ const Modal = ({ children }: ModalProps) => {
         onKeyDown={handleKeyDown}
         className="absolute top-4 right-4 dark:text-light/80 text-dark/80"
       >
-        ❌
+        <CloseIcon className="size-7 stroke-2 opacity-80 hover:opacity-100 transition-opacity duration-150 ease-in" />
       </button>
     </dialog>,
     document.body
