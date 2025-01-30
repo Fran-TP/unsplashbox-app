@@ -56,7 +56,7 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
               <p className="text-light/80 text-lg">⚠️ Something went wrong</p>
             }
           >
-            <Suspense fallback={<CollectionSkeleton />}>
+            <Suspense fallback={<CollectionSkeleton rows={3} />}>
               <CollectionList collectionPromises={fetchedUserCollections} />
             </Suspense>
           </ErrorBoundary>
