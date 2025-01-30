@@ -32,7 +32,7 @@ export const GallerySkeleton = () => (
 
 export const CollectionSkeleton = ({
   rows: skeletonRows = 5
-}: { rows: number }) => {
+}: { rows?: number }) => {
   return (
     <div className="p-3">
       {Array.from({ length: skeletonRows }).map((_, i) => {
