@@ -15,7 +15,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
 
   return (
     <div className="relative flex flex-col h-full">
-      <div className="flex-shrink-0 bg-gradient-to-r from-red-300 from-60% via-indigo-500 via-80% to-purple-600 to-95% h-16" />
+      <div className="shrink-0 bg-linear-to-r from-red-300 from-60% via-indigo-500 via-80% to-purple-600 to-95% h-16" />
       <InputSearch />
       <Suspense key={query} fallback={<GallerySkeleton />}>
         <PhotoGallery query={query} />

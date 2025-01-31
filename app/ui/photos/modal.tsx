@@ -34,7 +34,7 @@ const Modal = ({ children }: ModalProps) => {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="bg-dark backdrop:bg-[linear-gradient(45deg,var(--tw-gradient-stops))] backdrop:from-green-700/90 backdrop:to-transparent rounded-lg w-[80vw] overflow-x-clip"
+      className="m-auto bg-dark backdrop:bg-[linear-gradient(45deg,var(--tw-gradient-stops))] backdrop:from-green-700/90 backdrop:to-transparent rounded-lg w-[80vw] overflow-x-clip"
     >
       {children}
       <button

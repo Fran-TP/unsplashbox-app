@@ -31,7 +31,7 @@ const Nav = () => {
               <Link
                 href={link.href}
                 className={clsx(
-                  'md:px-6 md:py-[0.65rem] p-2 flex justify-center items-center font-medium rounded transition-colors duration-200 ease-in',
+                  'md:px-6 md:py-[0.65rem] p-2 flex justify-center items-center font-medium rounded-sm transition-colors duration-200 ease-in',
                   {
                     'bg-light dark:bg-gray-800 dark:text-light':
                       pathname === link.href,

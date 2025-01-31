@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <header className="p-4 md:pl-10 md:pr-12 md:py-[1.15rem] border-b border-b-light/80 dark:border-b-gray-700">
         <Nav />
       </header>
-      <main className="flex-grow">{children}</main>
+      <main className="grow">{children}</main>
     </div>
   )
 }
