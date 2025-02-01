@@ -19,29 +19,25 @@ const Modal = ({ children }: ModalProps) => {
     }
   }, [])
 
-  const handleDismiss = () => {
-    dialogRef.current?.close()
-
+  const handleClose = () => {
     setTimeout(router.back, 310)
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      handleDismiss()
-    }
+  const handleDismiss = () => {
+    dialogRef.current?.close()
   }
 
   return createPortal(
     <dialog
       ref={dialogRef}
+      onClose={handleClose}
       className="m-auto bg-dark backdrop:bg-linear-45 backdrop:from-green-700/90 backdrop:to-transparent rounded-lg w-[80vw] overflow-x-clip"
     >
       {children}
       <button
         type="button"
         onClick={handleDismiss}
-        onKeyDown={handleKeyDown}
-        className="absolute top-4 right-4 dark:text-light/80 text-dark/80 cursor-pointer focus:outline-transparent"
+        className="absolute top-4 right-4 dark:text-light/80 text-dark/80 cursor-pointer"
       >
         <CloseIcon className="size-7 stroke-2 opacity-80 hover:opacity-100 transition-opacity duration-150 ease-in" />
       </button>
