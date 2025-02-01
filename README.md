@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UnsplashBox
 
-## Getting Started
+## Overview
 
-First, run the development server:
+UnsplashBox is a web application that allows users to search and view photos from Unsplash. Users can browse through different collections, view individual photos, and load more photos as they scroll.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Search for photos by query
+- Infinite scrolling to load more photos
+- View photo details
+- Responsive design
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- React
+- TypeScript
+- Tailwind CSS
+- Unsplash API
+- React Router
+- Intersection Observer API
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Fran-TP/unsplashbox-app.git
+   cd unsplashbox-app
+   ```
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Create a `.env` file in the root directory and add your Unsplash API access key:
+   ```env
+   UNSPLASH_API_ACCESS_KEY=your_access_key
+   UNSPLASH_API_SECRET_KEY=your_secret_key
+   UNSPLASH_API_APP_ID=your_app_id
+   ```
+4. Start the development server:
+   ```bash
+   pnpm dev
+   ```
