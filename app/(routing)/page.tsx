@@ -26,7 +26,7 @@ const Home = () => {
       />
       <section className="flex flex-col px-6 sm:py-0 gap-3 justify-center items-center ">
         <h1 className="font-semibold text-4xl text-light/80">Search</h1>
-        <p className="font-light mb-3">
+        <p className="font-light mb-3 dark:text-light/80">
           Search high-resolution images from Unsplash
         </p>
         <form onSubmit={handleFormSubmit} className="relative w-full">
