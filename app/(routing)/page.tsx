@@ -25,7 +25,9 @@ const Home = () => {
         height={759}
       />
       <section className="flex flex-col px-6 sm:py-0 gap-3 justify-center items-center ">
-        <h1 className="font-semibold text-4xl text-light/80">Search</h1>
+        <h1 className="font-semibold text-4xl text-dark dark:text-light/80">
+          Search
+        </h1>
         <p className="font-light mb-3 dark:text-light/80">
           Search high-resolution images from Unsplash
         </p>
@@ -39,11 +41,11 @@ const Home = () => {
             name="search"
             placeholder="Enter your keywords..."
             autoComplete="off"
-            className="peer border-2 bg-gray-800 outline-0 w-[22rem] sm:w-[30rem] lg:w-[35rem] xl:w-[39.5rem] border-gray-700 rounded-xl py-4 pl-4 pr-10 placeholder:text-gray-500 focus:text-light/80"
+            className="peer border-2 border-light dark:border-gray-700 dark:bg-gray-800 outline-0 w-[22rem] sm:w-[30rem] lg:w-[35rem] xl:w-[39.5rem] rounded-xl py-4 pl-4 pr-10 placeholder:text-gray-500 focus:text-dark/80 dark:focus:text-light/80"
           />
           <button
             type="submit"
-            className="group absolute top-1/2 right-[0.60rem] -translate-y-1/2 text-gray-700 peer-focus:text-light/80 border-2 border-gray-700 p-1 rounded-md"
+            className="absolute top-1/2 right-[0.60rem] -translate-y-1/2 text-light peer-focus:text-dark/50 dark:text-gray-700 dark:peer-focus:text-light/80 border-2 border-light dark:border-gray-700 p-1 rounded-md"
             aria-describedby="search"
           >
             <SearchIcon className="size-7 text-inherit transition-colors duration-150 ease-in" />
