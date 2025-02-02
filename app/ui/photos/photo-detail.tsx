@@ -37,9 +37,11 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
             height={40}
             className="rounded-full"
           />
-          <p className="text-light/80 font-medium">{photo.user.name}</p>
+          <p className="text-dark/90 dark:text-light/80 font-medium">
+            {photo.user.name}
+          </p>
         </div>
-        <p className="text-light/80 font-light text-sm">
+        <p className="text-dark/90 dark:text-light/80 font-light text-sm">
           Published on{' '}
           <time dateTime={photo.created_at}>
             {formatDate(photo.created_at, 'en-US')}
@@ -50,10 +52,14 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
           <DownloadPhoto photo={photo} />
         </div>
         <section className="mt-6">
-          <h2 className="text-3xl text-light/80">Collection</h2>
+          <h2 className="text-3xl text-dark/90 dark:text-light/80">
+            Collection
+          </h2>
           <ErrorBoundary
             fallback={
-              <p className="text-light/80 text-lg">⚠️ Something went wrong</p>
+              <p className="text-dark/80 dark:text-light/80 text-lg">
+                ⚠️ Something went wrong
+              </p>
             }
           >
             <Suspense fallback={<CollectionSkeleton rows={3} />}>
