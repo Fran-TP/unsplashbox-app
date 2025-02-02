@@ -35,11 +35,11 @@ const InputSearch = () => {
         type="text"
         placeholder="Enter your keywords..."
         autoComplete="off"
-        className="peer border bg-gray-800 outline-hidden w-[22rem] sm:w-[30rem] lg:w-[35rem] xl:w-[39.5rem] border-gray-700 rounded-lg py-4 pl-4 pr-10 placeholder:text-gray-500 focus:text-light/80"
+        className="peer border-2 bg-lighter dark:bg-gray-800 outline-hidden w-[22rem] sm:w-[30rem] lg:w-[35rem] xl:w-[39.5rem] border-light dark:border-gray-700 rounded-lg py-4 pl-4 pr-10 placeholder:text-gray-500 text-dark/80 dark:focus:text-light/80"
         onChange={e => handleSearch(e.target.value)}
         defaultValue={defaultSearchText}
       />
-      <SearchIcon className="absolute text-balance top-1/2 right-5 -translate-y-1/2 size-7 text-gray-700 peer-focus:text-light/80 transition-colors duration-150 ease-in" />
+      <SearchIcon className="absolute text-balance top-1/2 right-5 -translate-y-1/2 size-7 text-light peer-focus:text-dark/50 dark:text-gray-700 dark:peer-focus:text-light/80 transition-colors duration-150 ease-in" />
     </div>
   )
 }
