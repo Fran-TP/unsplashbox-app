@@ -12,7 +12,7 @@ const CollectionList = async ({ collectionPromises }: CollectionListProps) => {
 
   if (!collections.length) {
     return (
-      <p className="text-light/80 text-sm font-light mt-4 ml-4">
+      <p className="text-dark/90 dark:text-light/80 text-sm font-light mt-4 ml-4">
         No collections found
       </p>
     )
@@ -26,7 +26,7 @@ const CollectionList = async ({ collectionPromises }: CollectionListProps) => {
         return (
           <li
             key={collection.id}
-            className="group flex items-center gap-4 snap-start hover:bg-gray-800 p-3 rounded-xl cursor-pointer transition-colors duration-200 ease-in"
+            className="group flex items-center gap-4 snap-start hover:bg-light dark:hover:bg-gray-800 p-3 rounded-xl cursor-pointer transition-colors duration-200 ease-in"
           >
             <div className="rounded-md overflow-hidden">
               {thumbnail ? (
@@ -41,7 +41,7 @@ const CollectionList = async ({ collectionPromises }: CollectionListProps) => {
                 <PhotoIcon className="group-hover:scale-125 aspect-square object-cover transition-transform duration-200 ease-in" />
               )}
             </div>
-            <p className="text-light/80 font-medium flex flex-col gap-2 text-balance text-xs md:text-base">
+            <p className="text-dark/90 dark:text-light/80 font-medium flex flex-col gap-2 text-balance text-xs md:text-base">
               {collection.title}
               <span className="font-light text-xs">
                 {collection.total_photos}{' '}
