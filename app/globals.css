@@ -76,7 +76,10 @@ body {
 
 dialog {
   scrollbar-width: thin;
-  scrollbar-color: var(--foreground) var(--background);
+  scrollbar-color: light-dark(
+    var(--foreground) var(--background),
+    var(--foreground) var(--background)
+  );
 
   opacity: 0;
 
