@@ -9,12 +9,12 @@ export const PhotoSkeleton = ({ displayAspect }: PhotoSkeletonProps) => {
   return (
     <div
       className={clsx(
-        'relative shimmer before:animate-shimmer overflow-hidden w-full rounded-md mb-7 border border-gray-700 bg-gray-800 grid place-items-center break-inside-avoid',
+        'relative shimmer before:animate-shimmer overflow-hidden w-full rounded-md mb-7 border-2 border-light bg-lighter dark:border-gray-700 dark:bg-gray-800 grid place-items-center break-inside-avoid',
         { 'aspect-square': displayAspect === 'square' },
         { 'aspect-video': displayAspect === 'video' }
       )}
     >
-      <PhotoIcon className="size-20 text-gray-700 stroke-1" />
+      <PhotoIcon className="size-20 text-light dark:text-gray-700 stroke-1" />
     </div>
   )
 }
