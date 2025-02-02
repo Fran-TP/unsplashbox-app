@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import UnsplashBoxLogo from '../icons/logo'
 import HomeIcon from '../icons/home'
 import GalleryIcon from '../icons/gallery'
+import SwitchTheme from '../components/theme-switch'
 
 const links = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -24,6 +25,9 @@ const Nav = () => {
         <UnsplashBoxLogo className="h-6 w-auto" />
       </Link>
       <ul className="flex space-x-3 text-sm">
+        <li>
+          <SwitchTheme />
+        </li>
         {links.map(link => {
           const Icon = link.icon
           return (
