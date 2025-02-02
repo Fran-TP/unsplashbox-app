@@ -8,7 +8,7 @@ export const AddPhoto = () => {
   return (
     <button
       type="button"
-      className="flex items-center justify-between gap-2 px-6 text-light/80 dark:bg-gray-800 p-2 rounded-sm transition-colors duration-200 ease-in"
+      className="flex items-center justify-between gap-2 px-6 cursor-pointer text-dark/90 dark:text-light/80 bg-light dark:bg-gray-800 p-2 rounded-sm transition-colors duration-200 ease-in"
     >
       <PlusIcon className="size-5" /> Add to collection
     </button>
@@ -33,7 +33,7 @@ export const DownloadPhoto = ({ photo }: { photo: Basic }) => {
     <button
       type="button"
       onClick={handleDownload}
-      className="flex items-center justify-between gap-2 px-6 text-light/80 dark:bg-gray-800 p-2 rounded-sm transition-colors duration-200 ease-in"
+      className="flex items-center justify-between gap-2 px-6 text-dark/90 bg-light cursor-pointer dark:text-light/80 dark:bg-gray-800 p-2 rounded-sm transition-colors duration-200 ease-in"
     >
       <DownloadIcon className="size-5" /> Download
     </button>
