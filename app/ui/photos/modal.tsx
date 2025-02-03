@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import CloseIcon from '../icons/close'
-
 interface ModalProps {
   children: React.ReactNode
 }
@@ -14,7 +13,9 @@ const Modal = ({ children }: ModalProps) => {
   const dialogRef = useRef<HTMLDialogElement | null>(null)
 
   useEffect(() => {
-    if (!dialogRef?.current?.open) {
+    const dialog = dialogRef.current
+
+    if (!dialog?.open) {
       dialogRef.current?.showModal()
     }
   }, [])
