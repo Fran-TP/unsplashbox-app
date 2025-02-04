@@ -64,7 +64,7 @@ body {
   background-image: linear-gradient(
     to right,
     transparent 40%,
-    #fafafa0f 50%,
+    light-dark(#f6f9ff, #fafafa0f) 50%,
     transparent 60%
   );
 }
