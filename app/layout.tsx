@@ -31,7 +31,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${BeVietnamPro.className} antialiased`}>
+      <body
+        className={`${BeVietnamPro.className} antialiased has-[dialog[open]]:overflow-y-hidden`}
+      >
         <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
