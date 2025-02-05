@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import CloseIcon from '../icons/close'
+import { useModalScrollLock } from '@/app/hooks/useModalScrollLock'
 interface ModalProps {
   children: React.ReactNode
 }
@@ -11,6 +12,8 @@ interface ModalProps {
 const Modal = ({ children }: ModalProps) => {
   const router = useRouter()
   const dialogRef = useRef<HTMLDialogElement | null>(null)
+
+  useModalScrollLock()
 
   useEffect(() => {
     const dialog = dialogRef.current
