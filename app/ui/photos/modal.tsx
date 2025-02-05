@@ -32,7 +32,7 @@ const Modal = ({ children }: ModalProps) => {
     <dialog
       ref={dialogRef}
       onClose={handleClose}
-      className="m-auto bg-lighter dark:bg-dark backdrop:bg-linear-45 backdrop:from-dark/80 dark:backdrop:from-green-700/90 backdrop:to-transparent rounded-lg w-[80vw] overflow-x-clip"
+      className="m-auto bg-lighter dark:bg-dark backdrop:backdrop-blur-sm rounded-lg w-[90vw] md:w-[80vw] overflow-x-clip"
     >
       {children}
       <button
