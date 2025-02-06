@@ -38,7 +38,7 @@ const CollectionList = async ({ collectionPromises }: CollectionListProps) => {
                   className="group-hover:scale-125 aspect-square object-cover transition-transform duration-200 ease-in"
                 />
               ) : (
-                <PhotoIcon className="group-hover:scale-125 aspect-square object-cover transition-transform duration-200 ease-in" />
+                <PhotoIcon className="group-hover:scale-125 size-14 stroke-1 text-dark/80 dark:text-light/70 aspect-square object-cover transition-transform duration-200 ease-in" />
               )}
             </div>
             <p className="text-dark/90 dark:text-light/80 font-medium flex flex-col gap-2 text-balance text-xs md:text-base">
