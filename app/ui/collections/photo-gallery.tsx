@@ -49,24 +49,29 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   }, [isNearScreen, onNextPage])
 
   return (
-    <div className="flex flex-col h-full justify-center items-center pt-14 px-14 mb-7">
+    <div className="mb-7 flex h-full flex-col items-center justify-center px-14 pt-14">
       {photos.length > 0 ? (
-        <Masonry
-          columns={responsiveColumnCounts}
-          gap={ITEMS_GAP}
-          className={clsx(loading && 'mb-7')}
-        >
-          {photos.map(image => (
-            <PhotoCard
-              key={image.id}
-              urls={image.urls}
-              altDescription={image.alt_description ?? 'Unsplash Image'}
-              width={image.width}
-              height={image.height}
-              onClick={handlePhotoClick({ id: image.id })}
-            />
-          ))}
-        </Masonry>
+        <>
+          <Masonry
+            columns={responsiveColumnCounts}
+            gap={ITEMS_GAP}
+            className={clsx(loading && 'mb-7')}
+          >
+            {photos.map(image => (
+              <PhotoCard
+                key={image.id}
+                urls={image.urls}
+                altDescription={image.alt_description ?? 'Unsplash Image'}
+                width={image.width}
+                height={image.height}
+                onClick={handlePhotoClick({ id: image.id })}
+              />
+            ))}
+          </Masonry>
+          {loading && (
+            <div className="mt-4 text-center text-gray-600 text-sm">Loading more photos...</div>
+          )}
+        </>
       ) : !loading ? (
         <p className="text-2xl text-gray-600">No photos found</p>
       ) : (
