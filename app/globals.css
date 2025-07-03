@@ -1,22 +1,22 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-dark: #121826;
-  --color-muted-gray: #6c727f;
-  --color-light: #e5e7eb;
-  --color-lighter: #ffffff;
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-dark: #121826;
+	--color-muted-gray: #6c727f;
+	--color-light: #e5e7eb;
+	--color-lighter: #ffffff;
 
-  --animate-shimmer: shimmer 1s infinite;
+	--animate-shimmer: shimmer 1s infinite;
 
-  @keyframes shimmer {
-    to {
-      transform: translateX(100%);
-    }
-  }
+	@keyframes shimmer {
+		to {
+			transform: translateX(100%);
+		}
+	}
 }
 
 /*
@@ -28,18 +28,18 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #121826;
+	--background: #ffffff;
+	--foreground: #121826;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -50,71 +50,65 @@
 } */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  scroll-behavior: smooth;
+	color: var(--foreground);
+	background: var(--background);
+	scrollbar-width: thin;
+	scrollbar-color: light-dark(
+		var(--foreground) var(--background),
+		var(--foreground) var(--background)
+	);
+	scroll-behavior: smooth;
+	overflow-y: scroll;
 }
 
 .shimmer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
-  scale: 1.5;
-  background-image: linear-gradient(
-    to right,
-    transparent 40%,
-    light-dark(#f6f9ff, #fafafa0f) 50%,
-    transparent 60%
-  );
-}
-
-.collection__list {
-  scrollbar-width: thin;
-  scrollbar-color: light-dark(
-    var(--foreground) var(--background),
-    var(--foreground) var(--background)
-  );
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: translateX(-100%);
+	scale: 1.5;
+	background-image: linear-gradient(
+		to right,
+		transparent 40%,
+		light-dark(#f6f9ff, #fafafa0f) 50%,
+		transparent 60%
+	);
 }
 
 dialog {
-  scrollbar-width: thin;
-  scrollbar-color: light-dark(
-    var(--foreground) var(--background),
-    var(--foreground) var(--background)
-  );
+	scrollbar-width: none;
 
-  opacity: 0;
+	opacity: 0;
 
-  translate: 0 -100%;
+	translate: 0 -100%;
 
-  transition-property: opacity display background-image;
-  transition-behavior: allow-discrete;
-  transition-duration: 0.3s;
+	transition-property: opacity display background-image;
+	transition-behavior: allow-discrete;
+	transition-duration: 0.3s;
 
-  &::backdrop {
-    opacity: 0;
+	&::backdrop {
+		opacity: 0;
 
-    transition-property: opacity;
-    transition-behavior: allow-discrete;
-    transition-duration: 0.3s;
-  }
+		transition-property: opacity;
+		transition-behavior: allow-discrete;
+		transition-duration: 0.3s;
+	}
 }
 
 dialog[open] {
-  opacity: 1;
-  translate: 0 0;
+	opacity: 1;
+	translate: 0 0;
 
-  @starting-style {
-    opacity: 0;
-    translate: 0 100%;
-  }
+	@starting-style {
+		opacity: 0;
+		translate: 0 100%;
+	}
 
-  &::backdrop {
-    opacity: 1;
+	&::backdrop {
+		opacity: 1;
 
-    @starting-style {
-      opacity: 0;
-    }
-  }
+		@starting-style {
+			opacity: 0;
+		}
+	}
 }
