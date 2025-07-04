@@ -3,10 +3,10 @@ import { fetchUserCollections } from '@/app/lib/data/fetch-user-collections'
 import { formatDate } from '@/app/lib/utils'
 import { AddPhoto, DownloadPhoto } from '@/app/ui/photos/buttons'
 import Image from 'next/image'
-import { ErrorBoundary } from 'react-error-boundary'
-import CollectionList from './collection-list'
 import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { CollectionSkeleton } from '../components/skeletons'
+import CollectionList from './collection-list'
 
 interface DetailPageProps {
   params: Promise<{ id: string }>
@@ -15,19 +15,21 @@ interface DetailPageProps {
 const PhotoDetail = async ({ params }: DetailPageProps) => {
   const { id } = await params
   const photo = await fetchPhotoById(id)
-  const fetchedUserCollections = fetchUserCollections({
+  const collection = await fetchUserCollections({
     username: photo.user.username
   })
 
   return (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-1 xl:grid-cols-2 lg:gap-10 p-14">
-      <Image
-        className="rounded-lg"
-        src={photo.urls.regular}
-        alt={photo.description ?? 'Untitled'}
-        width={photo.width}
-        height={photo.height}
-      />
+    <div className="grid h-full grid-cols-1 gap-5 p-6 sm:grid-cols-1 md:p-14 lg:gap-10 xl:grid-cols-2">
+      <div className="flex h-full items-center justify-center">
+        <Image
+          className="rounded-lg"
+          src={photo.urls.regular}
+          alt={photo.description ?? 'Untitled'}
+          width={photo.width}
+          height={photo.height}
+        />
+      </div>
       <section className="flex flex-col gap-4">
         <div className="flex items-center gap-4">
           <Image
@@ -37,34 +39,24 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
             height={40}
             className="rounded-full"
           />
-          <p className="text-dark/90 dark:text-light/80 font-medium">
-            {photo.user.name}
-          </p>
+          <p className="font-medium text-dark/90 dark:text-light/80">{photo.user.name}</p>
         </div>
-        <p className="text-dark/90 dark:text-light/80 font-light text-sm">
+        <p className="font-light text-dark/90 text-sm dark:text-light/80">
           Published on{' '}
-          <time dateTime={photo.created_at}>
-            {formatDate(photo.created_at, 'en-US')}
-          </time>
+          <time dateTime={photo.created_at}>{formatDate(photo.created_at, 'en-US')}</time>
         </p>
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex flex-wrap gap-4">
           <AddPhoto />
           <DownloadPhoto photo={photo} />
         </div>
-        <section className="mt-6">
-          <h2 className="text-3xl text-dark/90 dark:text-light/80">
-            Collection
-          </h2>
+        <section className="mt-6 h-40">
+          <h2 className="text-3xl text-dark/90 dark:text-light/80">Collection</h2>
           <ErrorBoundary
             fallback={
-              <p className="text-dark/80 dark:text-light/80 text-lg">
-                ⚠️ Something went wrong
-              </p>
+              <p className="text-dark/80 text-lg dark:text-light/80">⚠️ Something went wrong</p>
             }
           >
-            <Suspense fallback={<CollectionSkeleton rows={3} />}>
-              <CollectionList collectionPromises={fetchedUserCollections} />
-            </Suspense>
+            <CollectionList collection={collection} />
           </ErrorBoundary>
         </section>
       </section>
