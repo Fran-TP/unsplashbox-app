@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import {
-  fetchUnsplashPhotos,
-  type PhotoListResponse
-} from '../lib/data/fetch-photos'
+import { type PhotoListResponse, fetchUnsplashPhotos } from '../lib/data/fetch-photos'
 
 const INITIAL_PAGE = 1
 const MAX_PHOTOS_PER_PAGE = 20
@@ -23,15 +20,11 @@ export const useGallery = ({ query }: { query: string }) => {
     setLoading(true)
     fetchUnsplashPhotos({ perPage: MAX_PHOTOS_PER_PAGE, query, page })
       .then(({ results, total_pages }) => {
-        const distinctPhotos = results.filter(
-          ({ id }) => !latestPhotoIds.has(id)
-        )
+        const distinctPhotos = results.filter(({ id }) => !latestPhotoIds.has(id))
 
         setLatestPhotoIds(new Set(results.map(photo => photo.id)))
         setPhotos(photos.concat(distinctPhotos))
         setTotalPages(total_pages)
-
-        setLoading(false)
       })
       .catch((error: unknown) => {
         if (error instanceof Error) {
