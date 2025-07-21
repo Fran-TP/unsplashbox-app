@@ -9,6 +9,10 @@
 	--color-muted-gray: #6c727f;
 	--color-light: #e5e7eb;
 	--color-lighter: #ffffff;
+	--color-hover: #2563eb;
+
+	--background: #ffffff;
+	--foreground: #121826;
 
 	--animate-shimmer: shimmer 1s infinite;
 
@@ -37,18 +41,6 @@
 	}
 }
 
-:root {
-	--background: #ffffff;
-	--foreground: #121826;
-}
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121826;
-    --foreground: #6c727f;
-  }
-} */
-
 body {
 	color: var(--foreground);
 	background: var(--background);
@@ -58,7 +50,11 @@ body {
 		var(--foreground) var(--background)
 	);
 	scroll-behavior: smooth;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
+
+	&:has(.gallery) {
+		overflow-y: scroll;
+	}
 }
 
 .shimmer::before {
@@ -111,4 +107,7 @@ dialog[open] {
 			opacity: 0;
 		}
 	}
+}
+
+.menu-theme {
 }
