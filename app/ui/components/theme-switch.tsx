@@ -34,7 +34,7 @@ const SwitchTheme = () => {
   if (!mounted) return null
 
   return (
-    <div className="group relative border-red-500 menu-theme">
+    <div className="group relative menu-theme">
       <button
         type="button"
         className="cursor-pointer border-gray-800 p-2 peer rounded-md hover:bg-gray-300 dark:hover:bg-gray-800"
@@ -43,7 +43,7 @@ const SwitchTheme = () => {
       >
         <CurrentIcon className="size-4 text-dark dark:text-light" />
       </button>
-      <ul className="themes absolute right-0 top-full z-10 hidden bg-lighter text-dark peer-focus-visible:block group-hover:block dark:bg-dark dark:text-lighter rounded-sm overflow-clip border-2 border-light dark:border-gray-700">
+      <ul className="themes absolute right-0 md:right-1/2 top-full z-10 bg-lighter text-dark dark:bg-dark dark:text-lighter rounded-sm overflow-clip border-2 border-light dark:border-gray-700 md:translate-x-1/2">
         {themes.map(({ name }) => {
           return (
             <li
