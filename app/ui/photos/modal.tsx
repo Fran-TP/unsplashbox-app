@@ -35,7 +35,7 @@ const Modal = ({ children }: ModalProps) => {
     <dialog
       ref={dialogRef}
       onClose={handleClose}
-      className="m-auto h-[85%] w-[90vw] overflow-x-clip rounded-lg bg-lighter backdrop:backdrop-blur-sm md:w-[80vw] dark:bg-dark"
+      className="relative m-auto h-[85%] w-[90vw] overflow-x-clip rounded-lg bg-lighter backdrop:backdrop-blur-sm md:w-[80vw] dark:bg-dark"
     >
       {children}
       <button
