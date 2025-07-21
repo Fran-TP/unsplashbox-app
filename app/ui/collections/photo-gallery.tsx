@@ -49,7 +49,7 @@ const PhotoGallery = ({ query }: PhotoGalleryProps) => {
   }, [isNearScreen, onNextPage])
 
   return (
-    <div className="mb-7 flex h-full flex-col items-center justify-center px-14 pt-14">
+    <div className="gallery mb-7 flex h-full flex-col items-center justify-center px-14 pt-14">
       {photos.length > 0 ? (
         <>
           <Masonry
