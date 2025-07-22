@@ -34,10 +34,10 @@ const SwitchTheme = () => {
   if (!mounted) return null
 
   return (
-    <div className="group relative menu-theme">
+    <div className="relative menu-theme">
       <button
         type="button"
-        className="cursor-pointer border-gray-800 p-2 peer rounded-md hover:bg-gray-300 dark:hover:bg-gray-800"
+        className="theme-btn cursor-pointer border-gray-800 p-2 peer rounded-md hover:bg-gray-300 dark:hover:bg-gray-800"
         aria-label="Switch theme"
         title="switch theme"
       >
