@@ -20,10 +20,10 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
   })
 
   return (
-    <div className="grid h-full grid-cols-1 gap-5 p-6 sm:grid-cols-1 md:p-14 lg:gap-10 xl:grid-cols-2">
-      <div className="flex h-full items-center justify-center">
+    <div className="grid h-full grid-cols-1 gap-5 p-6 sm:grid-cols-1 md:p-6 lg:gap-10 xl:grid-cols-2">
+      <div className="h-full flex items-center justify-center overflow-y-auto">
         <Image
-          className="rounded-lg"
+          className="object-contain h-full"
           src={photo.urls.regular}
           alt={photo.description ?? 'Untitled'}
           width={photo.width}
@@ -39,21 +39,29 @@ const PhotoDetail = async ({ params }: DetailPageProps) => {
             height={40}
             className="rounded-full"
           />
-          <p className="font-medium text-dark/90 dark:text-light/80">{photo.user.name}</p>
+          <p className="font-medium text-dark/90 dark:text-light/80">
+            {photo.user.name}
+          </p>
         </div>
         <p className="font-light text-dark/90 text-sm dark:text-light/80">
           Published on{' '}
-          <time dateTime={photo.created_at}>{formatDate(photo.created_at, 'en-US')}</time>
+          <time dateTime={photo.created_at}>
+            {formatDate(photo.created_at, 'en-US')}
+          </time>
         </p>
         <div className="flex flex-wrap gap-4">
           <AddPhoto />
           <DownloadPhoto photo={photo} />
         </div>
         <section className="mt-6 h-40">
-          <h2 className="text-3xl text-dark/90 dark:text-light/80">Collection</h2>
+          <h2 className="text-3xl text-dark/90 dark:text-light/80">
+            Collection
+          </h2>
           <ErrorBoundary
             fallback={
-              <p className="text-dark/80 text-lg dark:text-light/80">⚠️ Something went wrong</p>
+              <p className="text-dark/80 text-lg dark:text-light/80">
+                ⚠️ Something went wrong
+              </p>
             }
           >
             <CollectionList collection={collection} />
