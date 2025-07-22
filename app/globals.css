@@ -120,7 +120,8 @@ dialog[open] {
 		transition-timing-function: ease-in;
 	}
 
-	&:hover .themes {
+	&:hover .themes,
+	& .theme-btn:focus-visible + .themes {
 		display: block;
 		opacity: 1;
 
